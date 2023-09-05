@@ -7,14 +7,21 @@ const image_creator = async (req, res) => {
     const gptPrompt = await createGPTPrompt(prompt);
     const karloPromptList = await createKarloPrompt(gptPrompt);
 
-    const imageList = [];
+    const imageUrlList = [];
     for (let i = 0; i < karloPromptList.length; i++) {
-        imageList.push(await createImagesByKarlo(karloPromptList[i]));
+        imageUrlList.push(await createImagesByKarlo(karloPromptList[i]));
     }
 
-    if (imageList) {
-        res.contentType('image/jpeg');
-        res.end(imageList[0]);
+    if (imageUrlList.length) {
+        res.json({
+            imageUrl: [
+                imageUrlList[0],
+                imageUrlList[1],
+                imageUrlList[2],
+                imageUrlList[3],
+                imageUrlList[4],
+            ],
+        });
     } else {
         res.status(500).json({
             error: 'Failed to get response from ChatGPT API',
@@ -51,12 +58,9 @@ async function createImagesByKarlo(karloPrompt) {
     // 이미지 생성하기 REST API 호출
     try {
         const response = await t2i(prompt, negativePrompt);
-        // 응답의 첫 번째 이미지 생성 결과를 다운로드하여 표시
-        const imageUrl = response.images[0].image;
-        const imageResponse = await fetch(imageUrl);
-        const buffer = await imageResponse.buffer();
+        const imageUrl = response.images[0].image; // 응답의 첫 번째 이미지 생성 결과를 다운로드하여 표시
 
-        return buffer;
+        return imageUrl;
     } catch (error) {
         console.error('Error:', error);
         return error;
