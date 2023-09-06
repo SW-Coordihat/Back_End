@@ -12,6 +12,7 @@ const t2i = async (prompt, negativePrompt) => {
             {
                 prompt: prompt,
                 negative_prompt: negativePrompt,
+                image_format: 'jpeg',
             },
             {
                 headers: {
