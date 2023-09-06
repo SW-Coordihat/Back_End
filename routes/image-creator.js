@@ -9,7 +9,8 @@ const image_creator = async (req, res) => {
 
     const imageUrlList = [];
     for (let i = 0; i < karloPromptList.length; i++) {
-        imageUrlList.push(await createImagesByKarlo(karloPromptList[i]));
+        let imageUrl = await createImagesByKarlo(karloPromptList[i]);
+        imageUrlList.push({ src: imageUrl });
     }
 
     if (imageUrlList.length) {
