@@ -7,6 +7,10 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 
 app.post('/api/image', image_creator);
 
+app.get('/', (req, res) => {
+    res.json({ response: 'hello' });
+});
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
