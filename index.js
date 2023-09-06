@@ -1,7 +1,9 @@
 const express = require('express');
 const { image_creator } = require('./routes/image-creator');
 const app = express();
+const cors = require('cors');
 
+app.use(cors());
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
