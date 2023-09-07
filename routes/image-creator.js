@@ -32,7 +32,7 @@ const image_creator = async (req, res) => {
 
 function createGPTPrompt(prompt) {
     //gpt에 넣을 프롬포트 만들기
-    const gptPrompt = `\"${prompt}\" 라는 사용자 요청이 있을때 이미지 생성AI에 입력할 수 있는 프롬프트 입력 문장을 작성해 주세요. 5가지 프롬프트 문장이 필요하며,가능한 한 구체적으로 영어로 json형식으로 작성해주세요. prompts라는 key 값에 해당하는 value값은 리스트 형식으로 5가지 문장이 들어가도록 작성해 주세요. 해당 json 파일의 key값은 모두 \"prompt\" 여야합니다. PPT 제작용 이미지가 필요합니다.`;
+    const gptPrompt = `\"${prompt}\" 라는 사용자 요청이 있을때 이미지 생성AI에 입력할 수 있는 프롬프트 입력 문장을 작성해 주세요. 12가지 프롬프트 문장이 필요하며,가능한 한 구체적으로 영어로 json형식으로 작성해주세요. prompts라는 key 값에 해당하는 value값은 리스트 형식으로 5가지 문장이 들어가도록 작성해 주세요. 해당 json 파일의 key값은 모두 \"prompt\" 여야합니다. PPT 제작용 이미지가 필요합니다.`;
     return gptPrompt;
 }
 
